@@ -66,4 +66,5 @@ jobs:
               --env SPRING_DATASOURCE_URL=${{ secrets.ALIYUN_RDS_CONNECTION_URL }} \
               --env SPRING_DATASOURCE_PASSWORD=${{ secrets.ALIYUN_RDS_POURRFOT_PASSWORD }} \
               --env SPRING_REDIS_HOST=${{ secrets.REDIS_HOST }} \
+              --env CAS_JWK_KEYPAIR=${{ secrets.JWK_KEYPAIR }} \
               $IMAGE_URL
