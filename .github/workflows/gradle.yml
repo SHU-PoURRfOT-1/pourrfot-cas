@@ -63,5 +63,5 @@ jobs:
               -d \
               -p 9001:9001 \
               --name pourrfot-server \
-              --env SPRING_APPLICATION_JSON=${{ secrets.SPRING_APPLICATION_JSON }} \
+              --env SPRING_APPLICATION_JSON='${{ secrets.SPRING_APPLICATION_JSON }}' \
               $IMAGE_URL
