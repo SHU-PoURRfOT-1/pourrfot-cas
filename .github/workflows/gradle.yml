@@ -56,12 +56,15 @@ jobs:
           key: ${{ secrets.ALIYUN_LIGHTHOUSE_KEY }}
           script: |
             export IMAGE_URL='${{ secrets.ALIYUN_DOCKER_REGISTRY_HOST }}/${{ secrets.ALIYUN_DOCKER_REGISTRY_NAMESPACE }}/pourrfot-cas:latest'
-            docker stop $(docker ps --filter name=pourrfot-cas -q)
-            docker rm -f $(docker ps -a --filter name=pourrfot-cas -q)
+            docker stop $(docker ps --filter name=pourrfot-cas -q) || true
+            docker rm -f $(docker ps -a --filter name=pourrfot-cas -q) || true
             docker pull $IMAGE_URL
             docker run \
               -d \
               -p 9001:9001 \
-              --name pourrfot-server \
-              --env SPRING_APPLICATION_JSON='${{ secrets.SPRING_APPLICATION_JSON }}' \
+              --name pourrfot-cas \
+              --env SPRING_DATASOURCE_URL=${{ secrets.ALIYUN_RDS_CONNECTION_URL }} \
+              --env SPRING_DATASOURCE_PASSWORD=${{ secrets.ALIYUN_RDS_POURRFOT_PASSWORD }} \
+              --env SPRING_REDIS_HOST=${{ secrets.REDIS_HOST }} \
+              --env CAS_JWK_KEYPAIR='${{ secrets.JWK_KEYPAIR }}' \
               $IMAGE_URL

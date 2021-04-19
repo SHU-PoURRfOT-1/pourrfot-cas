@@ -1,0 +1,26 @@
+###
+POST http://localhost:9001/cas/api/oauth/code
+Content-Type: application/json
+
+{
+    "clientId": "clientId",
+    "password": "123456",
+    "redirectUrl": "http://localhost:9000/api",
+    "responseType": "code",
+    "scope": "admin",
+    "state": "state",
+    "username": "spencercjh"
+}
+
+###
+POST http://localhost:9001/cas/api/oauth/token
+Accept: application/json
+Content-Type: application/json
+
+{
+    "code": "17ad04d4588546709dcb9cfe8f98b10c",
+    "state": "state",
+    "clientId": "clientId",
+    "clientSecret": "clientSecret",
+    "grantType": "AUTHORIZATION_CODE"
+}

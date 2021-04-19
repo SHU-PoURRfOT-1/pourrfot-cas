@@ -1,0 +1,19 @@
+{
+    "properties": [
+        {
+            "name": "cas.jwk.keypair",
+            "type": "java.lang.String",
+            "description": "JSON web key generate from https://mkjwk.org."
+        },
+        {
+            "name": "cas.jwk.expire",
+            "type": "java.lang.String",
+            "description": "expire time."
+        },
+        {
+            "name": "cas.redis.key",
+            "type": "java.lang.String",
+            "description": "redis key."
+        }
+    ]
+}

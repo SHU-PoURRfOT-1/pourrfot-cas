@@ -1,3 +1,34 @@
 spring:
   application:
     name: pourrfot-cas
+  redis:
+    host: localhost
+  datasource:
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    url: "jdbc:mysql://localhost/pourrfot"
+    username: pourrfot
+    password: 123456
+cas:
+  jwk:
+    expire: 86400
+    keypair: |
+      {
+          "p": "88toT9IstIMRZc4Pr_DtWtsKZqdSgC-beZ4COf9auxfiPoevMsaPBdGxHC3iq4XCxIPmDFVx6J7ZYv4ogoF7q-CjLWvHNE3iVNLm6SjaFBEUZtv-B7A1SOE-hfyBB-ZY55bMx6Adc5ew0gc9GjQAaP119joTwXvkliUuurI8ci8",
+          "kty": "RSA",
+          "q": "se8kVMW8MLOwF2u2qEH5SAcqSZhukMtxqN6iwu-EyAl2dORhl3NTZuSWrDFsZvAQYF051x3888soTgFyUoWHh-36PDZ9YUiBmCvxuhdcBg8GkXnrtzvIEJWR83oH8L0rAtVPcw9jAPPwEDdvpnve579Xyk_DFdMSNrgMc17pFv8",
+          "d": "Sj1Tgquu15A9NF-fDVzUxjYUeQPwUC-H0OtkIvC7Q5e0rJan0W8jm1GohpFbSBwMaC5Qg0_dmDS_UPgfCtJcXtuXbeNVWVP6gVkXmSQqSEU6mXFEwC6_ZYPTlY6cUIGP9MsCu6cNSnLJ0XYKlhv_tkq_ZQaNxCv6cxmUByrfkMFjVHXxqSPgw9W87LkcJg-96-SiTk9sKPyLovpubzPmKoKJyygMjm4oqFQ3JWl17o0onQAOfMF7vHc0ZICfHgN-cUCcDXcUk52WnWBM4nuu-fEz4AG9HS141O1v-fq5_8lMmElXywXDCstfSodjgMKPqg-UJACy9newDLRIZ3ufRQ",
+          "e": "AQAB",
+          "use": "sig",
+          "kid": "local",
+          "qi": "7rqaFT9GMaxrkQH05LkCBpnwguVq0XyP_HqM89d24HI1T6I_eK1jSmIZTNJXLOqfWBynN9IMr_nGzGgB2dI4lZ5SM-baSYktnhNdLv0w4dUznBqiwhd9Dmsz4bwAWDv7aqY87q_Vi66fUQsZgpwmQ7taFqQbDDc91kGckO9-Dwo",
+          "dp": "YGzGYDPPzMG-YtbCq6MOLg5OqdVqMxshUlPlq4zNFQzYRkUiTWHtda6_b1bSvWaVZ2aH2b7947TYZGgEG8Ic6RlbUP689noLl-Mmw3eN8bvjpt9CNUZDfQTh1trNKhO4fDjP2_D_VRXdMOT-DNwegWgmfPHxmGhpO92PAva2I68",
+          "alg": "RS256",
+          "dq": "MBww_prYX3K2Uh7VrHjqJgeJ74w_mPbpLHfGGl8Yz91_Iev-VyzfiBqWgsh6Pvr58pRCZ1-8XU64_x51AssH8kDuQAmbrQolwDdhjKd0Qk8dv4fvrAOF_LX0WJjOPNFpJ8L1UG8AnelXJ4tVrPYhNxgNbK5UWTpQ2mq5MxiefZE",
+          "n": "qXNgnuiOU1GvSBd_OogFYGoWKBtmuGVIpCarHYu9UAKkNtga9lW52rmt9WguFwzjUeFjphiiMoCUaQX7jO1U_NEUHk2B4fcr_lscPQ2uPuxrcQ9z7XNbqnj2O09OGohKl8qkvBGE4siXLcygoPiyQ_pzmbws7KQ3l0HV5_iSG_UF-UG-ARXpFvdrOEb40aMiaYtFlGO_pTB2-lchPC0ea7g6Sf8wA27ZgdqvHEa2TnHEVNTG6ynSPZ08TjmDNmoam9SxhdYnQF84YyqTkOMCvGIrkVn2HnMS9huiTRwHU-G_zQ0rzu0TyXafn_qvqLs4EGaP6q5zuqe4tYFW6szG0Q"
+      }
+  redis:
+    key: pourrfot
+server:
+  servlet:
+    context-path: /cas/api
+  port: 9001
