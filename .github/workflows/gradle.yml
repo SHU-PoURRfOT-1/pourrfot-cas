@@ -62,7 +62,7 @@ jobs:
             docker run \
               -d \
               -p 9001:9001 \
-              --name pourrfot-server \
+              --name pourrfot-cas \
               --env SPRING_DATASOURCE_URL=${{ secrets.ALIYUN_RDS_CONNECTION_URL }} \
               --env SPRING_DATASOURCE_PASSWORD=${{ secrets.ALIYUN_RDS_POURRFOT_PASSWORD }} \
               $IMAGE_URL
