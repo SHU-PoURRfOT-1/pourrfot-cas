@@ -20,6 +20,7 @@ cas:
       }
 spring:
   redis:
+    # Don't use local redis in most situations
     port: 6324
   datasource:
     # https://www.testcontainers.org/modules/databases/jdbc/

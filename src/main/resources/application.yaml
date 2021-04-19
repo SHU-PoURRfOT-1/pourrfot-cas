@@ -3,7 +3,6 @@ spring:
     name: pourrfot-cas
   redis:
     host: localhost
-    password: 123456
   datasource:
     driver-class-name: "com.mysql.cj.jdbc.Driver"
     url: "jdbc:mysql://localhost/pourrfot"
