@@ -5,6 +5,7 @@ spring:
     host: localhost
     password: 123456
   datasource:
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
     url: "jdbc:mysql://localhost/pourrfot"
     username: pourrfot
     password: 123456
@@ -13,18 +14,18 @@ cas:
     expire: 86400
     keypair: |
       {
-          "p": "zX_W7-0SHlPd5mnUqzmV-WkwpkhvSvnMwlG6BWF2K0Gy3ueELjaCP_IIWiXHQdGfQPyyDqoIB5Sx7WalWsVBre23U2w6RYjvltrmwcpGAeMbeW6fWY-ZXzWzpb3wwRZwZQzhMB0KgTIMXjV1ANVO8eLS1GqAHFQ0kYZNCFcKUmk",
+          "p": "88toT9IstIMRZc4Pr_DtWtsKZqdSgC-beZ4COf9auxfiPoevMsaPBdGxHC3iq4XCxIPmDFVx6J7ZYv4ogoF7q-CjLWvHNE3iVNLm6SjaFBEUZtv-B7A1SOE-hfyBB-ZY55bMx6Adc5ew0gc9GjQAaP119joTwXvkliUuurI8ci8",
           "kty": "RSA",
-          "q": "qmNTjkT5Tdogqy8oioX8pSB0viL30yPK1jIFWQPcaqUtUvZHklw1-4RDE8wRlGFK2SZfxJ4AAXWzqa0Y_2oLYv9VEwv0ddbwmEZ_5D2LoCJRCkh9p00VUZInklOKfCj9jvtj6QrlfB0V-c_Ng1fnAKT81N80enY45ABjVJIBm6U",
-          "d": "V4OnkjQwH6vDXZCY1Go3vf9OjpF13k_Sjkzl4jky4AyPQ78s5jMN7MAe7Z2usD0hf2FFjh2ezBHocfJS_mB9NdcMbTZtmdv1ogBg0rykXBKml1LXxRvP02IsF4yPY0zeBJmOtwVwKsZzrDWOwFL0_274gOTX-_cZbqcnT3ECYJng8Ya8-a6X9XqXAjve1kr3A4TVe1BMcH1JpgDQMV3HRifNt5ZiZc94rsX0GVPHf-qyFs-9XxfMXDe8NoQiyBtaFRntlGnBjSrRNFQbUs1uCm0jHIac2cU4s3sRXNHK8-pjPjepQVPXb0WK4X42Rg0KYIWSRyarN1oq4X0tK_u6IQ",
+          "q": "se8kVMW8MLOwF2u2qEH5SAcqSZhukMtxqN6iwu-EyAl2dORhl3NTZuSWrDFsZvAQYF051x3888soTgFyUoWHh-36PDZ9YUiBmCvxuhdcBg8GkXnrtzvIEJWR83oH8L0rAtVPcw9jAPPwEDdvpnve579Xyk_DFdMSNrgMc17pFv8",
+          "d": "Sj1Tgquu15A9NF-fDVzUxjYUeQPwUC-H0OtkIvC7Q5e0rJan0W8jm1GohpFbSBwMaC5Qg0_dmDS_UPgfCtJcXtuXbeNVWVP6gVkXmSQqSEU6mXFEwC6_ZYPTlY6cUIGP9MsCu6cNSnLJ0XYKlhv_tkq_ZQaNxCv6cxmUByrfkMFjVHXxqSPgw9W87LkcJg-96-SiTk9sKPyLovpubzPmKoKJyygMjm4oqFQ3JWl17o0onQAOfMF7vHc0ZICfHgN-cUCcDXcUk52WnWBM4nuu-fEz4AG9HS141O1v-fq5_8lMmElXywXDCstfSodjgMKPqg-UJACy9newDLRIZ3ufRQ",
           "e": "AQAB",
           "use": "sig",
-          "kid": "pourrfot-cas",
-          "qi": "MgExJ3fGnl8pjNcRJtA1499SxbcgeyOy4J4K-Vpm1YgDokJTLN8zgrNCTU7VO3-VWuRt9C7vgYcdDNSeuAEISrOS8Tsx5xRssQ4sz354OaDVmdJJuw5OyguFCtOXSa8LR1uNtoUmushFp_8OD_FDc1L_6ECfwd6b8Obg2UQ9E1s",
-          "dp": "aaLSwWjzjGV-RwiWCyLCBoDdQk0v8LGyYR2T61orXZcbNNx8JSleETMAuh57bEkufUCo40Lid8snH6tJSvzlg1wUhiy3U7FNwBVs06eAD05IfEayYV6g78FyRLv7-7XmNvvE8m-rS7iHhRIjwDbmqw73Y7wPeQCMOVZ5WNUteCk",
+          "kid": "local",
+          "qi": "7rqaFT9GMaxrkQH05LkCBpnwguVq0XyP_HqM89d24HI1T6I_eK1jSmIZTNJXLOqfWBynN9IMr_nGzGgB2dI4lZ5SM-baSYktnhNdLv0w4dUznBqiwhd9Dmsz4bwAWDv7aqY87q_Vi66fUQsZgpwmQ7taFqQbDDc91kGckO9-Dwo",
+          "dp": "YGzGYDPPzMG-YtbCq6MOLg5OqdVqMxshUlPlq4zNFQzYRkUiTWHtda6_b1bSvWaVZ2aH2b7947TYZGgEG8Ic6RlbUP689noLl-Mmw3eN8bvjpt9CNUZDfQTh1trNKhO4fDjP2_D_VRXdMOT-DNwegWgmfPHxmGhpO92PAva2I68",
           "alg": "RS256",
-          "dq": "Ki2CPoKGcCYh1h5LW9cFDl81ZufDDyoaCOHC_yD8jA2tZY7_cpSO7F72N81ZQLDA1XYxWLt_5tybB9KIkJlQjkYEaj2YWx9E2X0CJZ6ylIZKJ1CAgkyLjXCviQJTEp8W_TDvr316Bzov-XHePrggv8EXsR47oGDpfk82R3YJHd0",
-          "n": "iMagPhktzgYivtRCn6nruHfhdk725WYTDFv3bFoEu51dIh-XUfvDjz3JWL1UU9tbN7NNgtrq92ojXxC3DlAho_NjhNGpfoXhCQqiQK9g1d0PJXNZFvIwrRm6sdFKWgaKVeT5pfPYnKtxVKpMT73OQk_jrA118m3cinCmGHuf6uJS9GkdYRSxn8z2cdS_IS8amyE5wkTo8jCyfKsoBqV9K5HGjKSgFviRzNe6J6Sxa6-S30K3ECpwi2O00nWFj-ahwdG0f89JWGStNIq-wuFF3A0x1uHE4gsBvKocEGbadIt9dxMdFNkIh9-o_Cbabeg3H5Shi4waYjY8IZKRjfWwrQ"
+          "dq": "MBww_prYX3K2Uh7VrHjqJgeJ74w_mPbpLHfGGl8Yz91_Iev-VyzfiBqWgsh6Pvr58pRCZ1-8XU64_x51AssH8kDuQAmbrQolwDdhjKd0Qk8dv4fvrAOF_LX0WJjOPNFpJ8L1UG8AnelXJ4tVrPYhNxgNbK5UWTpQ2mq5MxiefZE",
+          "n": "qXNgnuiOU1GvSBd_OogFYGoWKBtmuGVIpCarHYu9UAKkNtga9lW52rmt9WguFwzjUeFjphiiMoCUaQX7jO1U_NEUHk2B4fcr_lscPQ2uPuxrcQ9z7XNbqnj2O09OGohKl8qkvBGE4siXLcygoPiyQ_pzmbws7KQ3l0HV5_iSG_UF-UG-ARXpFvdrOEb40aMiaYtFlGO_pTB2-lchPC0ea7g6Sf8wA27ZgdqvHEa2TnHEVNTG6ynSPZ08TjmDNmoam9SxhdYnQF84YyqTkOMCvGIrkVn2HnMS9huiTRwHU-G_zQ0rzu0TyXafn_qvqLs4EGaP6q5zuqe4tYFW6szG0Q"
       }
   redis:
     key: pourrfot

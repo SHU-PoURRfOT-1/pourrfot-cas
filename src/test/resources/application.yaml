@@ -1,0 +1,28 @@
+cas:
+  redis:
+    key: mock
+  jwk:
+    expire: 86400
+    keypair: |
+      {
+          "p": "48RxPYOgbY8fq5ehc8PQy7reqymBoydSockEun24K_MDn1Lzcg2KWnvIZO0VUiZBN4TbX1PWi3b5w03gtzewU26-r36J8pkkp9BPXrdYf0kVK9Zmymt6m-o_-UuojNVfSixwAHr78OErOEwvL981pjmXUlO6u0Nn2FNJcm-JNHU",
+          "kty": "RSA",
+          "q": "kW91I6_My6p9t3K1N8ODtQ0fJQvJmi-Tvp7NSKd4lSDDelXy82rpO5kc-oG0C9Zg1VIPBocOTwqbZNkHwDoJQ85zvCsZNPX00bnId3CfN5x-rJJUr1JqPnLTdQsxi-ZcNUNTVJIN8IMe7487vMHsyY6O2Ahohv5Sv0j9zfx24dc",
+          "d": "a_rbLXmzh8HUxSrD_qrhBeAoQPTt-Vufdev54xpEqU87V71U-2icshFro9n-0me2M-WBHokcTFuVopvx2KDPmF9XgkNC5UkILq-S4tlEIWCczh-xcwTQ4j1ps7kACuI_wGCvZgl87gIgaQM5qatu_-7ybDylpbx0J5RO75QmmKxNgyFBh3y-dtykcnRfSwxu3efG4RbzkAku8gHRTK38Ia6HkTU9NNPMhCbO8oWwSz4ucCfFY2UT6ZA_mSHJNzQyeCaMAPe4nw85y-z5BXLSbxMFHJ7q7W2b_aw_GN6YwhI1EjhZBtDEFDqPyl8CDm1YniF8zztO4TqcJ9CliYEM8Q",
+          "e": "AQAB",
+          "use": "sig",
+          "kid": "mock",
+          "qi": "ZP85QsY0CcNiU2dtSZ0lbkviBp-asFMX-4w24vOZ3powL1d4qwqu6bW6vqDXaocGx266KZ0pH0nPbCB3CAsNVXoRSbZIcJQOObO7wUgivP7KIbLIgycqClHBl-lnPjkG2730BaDcU9d6WjxyYVxd8kJySnh-e9zubvyS1n1YP1k",
+          "dp": "vwvYHEva9eq2Gtz93Ldj3G8rNJCFH4_tPKz7HV40bBDTegE_F-yJnynyxc0jNBvIWkRDKauN6r9p8krRcXzxlpnusg9GsEmKOIR-_qh1P5bSfknBQIp0dnE_JeEzSKX03qd1bsG5r6t-8CLe9Z2ZR4tJBRIcL9TzNr1tfuJVSL0",
+          "alg": "RS256",
+          "dq": "QQHfDFqSYh8NHqjJU-myv4Tj_P0t2huWIMh-3hDtl0sT1WUBuch6BEfGajr7rabflbqeOL65qJ8HIqbYDhZi-coYdW2WUNP34J74elr-8C6leKHX9J4UG2HcHx8nwG7xnGVBpDW8wVr6wv31J8RPATEVrH7lqiGX_ySzPhWxVfU",
+          "n": "gWVuiXlACFajGPwQaJ9zIFT_NZ7zMb89Dk_H5kFwMyvh0AOnjXl4eLjBQOA_a0oVTkXrSrCiUqCQsDwpU2-aj3mQK7bQfbq6p8g174YalNHPOAOq-DZRKbL4abB15xbm7o-XVBU_H-j_98dRLkytP2Eotf17KpjQJtXMlYrDJHcIxWMEZngCF1sG2_uDL4iGyKPz1-1j2XH1BXCu5BDmTGa-lh1QoZ7MKjNOWB_f4Kvehym1wS3ao-dqYlzC3jUZqSTYudwxxF4l4yMo0sO_CCEsPixn0MBR_tJjcBvaQWMGM9grDyAU4voyNzbkpCCk4T1GYiE_HRpXqV61nUPjQw"
+      }
+spring:
+  redis:
+    port: 6324
+  datasource:
+    # https://www.testcontainers.org/modules/databases/jdbc/
+    url: jdbc:tc:mysql:8.0:///test
+    username: test
+    password: test
