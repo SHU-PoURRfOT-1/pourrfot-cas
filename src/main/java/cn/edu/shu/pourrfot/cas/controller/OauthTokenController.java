@@ -1,5 +1,6 @@
 package cn.edu.shu.pourrfot.cas.controller;
 
+import cn.edu.shu.pourrfot.cas.enums.RoleEnum;
 import cn.edu.shu.pourrfot.cas.helper.JwtServiceHelper;
 import cn.edu.shu.pourrfot.cas.model.PourrfotUser;
 import cn.edu.shu.pourrfot.cas.model.dto.*;
@@ -68,6 +69,9 @@ public class OauthTokenController {
   }
 
   @PostMapping(value = "/token", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @ApiResponses({@ApiResponse(code = 403, message = "Illegal client", response = Result.class),
+    @ApiResponse(code = 401, message = "Can't find user by the code", response = Result.class),
+    @ApiResponse(code = 200, message = "Oauth2.0 authorization-code authorization success", response = Result.class)})
   public ResponseEntity<Result<OauthTokenResponse>> createToken(@NotNull @Valid @RequestBody OauthTokenRequest oauthTokenRequest) {
     final String clientId = oauthTokenRequest.getClientId();
     final String clientSecret = oauthTokenRequest.getClientSecret();
@@ -91,7 +95,31 @@ public class OauthTokenController {
       .token(jwtTokenData.getToken())
       .expireAt(jwtTokenData.getExpireAt())
       .user(user)
-      .message("Oauth2.0 authorization success")
+      .message("Oauth2.0 authorization-code authorization success")
+      .build()));
+  }
+
+  @PostMapping(value = "/password-token", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @ApiResponses({@ApiResponse(code = 403, message = "Wrong certification or scope", response = Result.class),
+    @ApiResponse(code = 200, message = "Oath2.0 password authorization success", response = Result.class)})
+  public ResponseEntity<Result<OauthTokenResponse>> createTokenByPassword(@NotNull @Valid @RequestBody OauthTokenPasswordRequest oauthTokenPasswordRequest) {
+    final String username = oauthTokenPasswordRequest.getUsername();
+    final String password = oauthTokenPasswordRequest.getPassword();
+    final RoleEnum role = oauthTokenPasswordRequest.getScope();
+    final PourrfotUser user = authService.login(username, password);
+    if (user == null || !user.getRole().equals(role)) {
+      return ResponseEntity.status(HttpStatus.FORBIDDEN)
+        .body(Result.of(HttpStatus.FORBIDDEN, "forbidden", OauthTokenResponse.builder()
+          .message("Wrong certification or scope")
+          .build()));
+    }
+    final JwtTokenData jwtTokenData = jwtService.generateToken(
+      JwtServiceHelper.parseUserToPayload(user.setPassword("******")));
+    return ResponseEntity.ok(Result.normalOk("success", OauthTokenResponse.builder()
+      .token(jwtTokenData.getToken())
+      .expireAt(jwtTokenData.getExpireAt())
+      .user(user)
+      .message("Oath2.0 password authorization success")
       .build()));
   }
 

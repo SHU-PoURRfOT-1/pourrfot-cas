@@ -7,5 +7,9 @@ public enum GrantTypeEnum {
   /**
    * authorization_code
    */
-  AUTHORIZATION_CODE
+  AUTHORIZATION_CODE,
+  /**
+   * PASSWORD
+   */
+  PASSWORD
 }
