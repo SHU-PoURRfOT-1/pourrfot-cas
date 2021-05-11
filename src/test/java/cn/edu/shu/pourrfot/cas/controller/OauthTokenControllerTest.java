@@ -6,9 +6,11 @@ import cn.edu.shu.pourrfot.cas.exception.OauthAuthorizationException;
 import cn.edu.shu.pourrfot.cas.model.PourrfotUser;
 import cn.edu.shu.pourrfot.cas.model.dto.JwtTokenData;
 import cn.edu.shu.pourrfot.cas.model.dto.OauthAuthorizationCodeRequest;
+import cn.edu.shu.pourrfot.cas.model.dto.OauthTokenPasswordRequest;
 import cn.edu.shu.pourrfot.cas.model.dto.OauthTokenRequest;
 import cn.edu.shu.pourrfot.cas.service.AuthService;
 import cn.edu.shu.pourrfot.cas.service.JwtService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -219,6 +221,86 @@ class OauthTokenControllerTest {
       .content(objectMapper.writeValueAsString(request)))
       .andExpect(status().isUnauthorized())
       .andExpect(jsonPath("$.code").value(401))
+      .andExpect(jsonPath("$.data").exists())
+      .andExpect(jsonPath("$.message").exists());
+  }
+
+  @Test
+  void createTokenByPassword() throws Exception {
+    final PourrfotUser mockUser = PourrfotUser.builder()
+      .username("mock")
+      .nickname("mock")
+      .id(100)
+      .role(RoleEnum.student)
+      .build();
+    given(authService.login(eq("mock"),eq("mock"))).willReturn(mockUser);
+    given(jwtService.generateToken(anyMap())).willReturn(JwtTokenData.builder()
+      .token("mock")
+      .expireAt(System.currentTimeMillis())
+      .build());
+    final OauthTokenPasswordRequest request = OauthTokenPasswordRequest.builder()
+      .username("mock")
+      .password("mock")
+      .scope(RoleEnum.student)
+      .clientId("pourrfot-web")
+      .grantType(GrantTypeEnum.PASSWORD)
+      .build();
+    mockMvc.perform(post("/oauth/password-token")
+      .contentType(MediaType.APPLICATION_JSON)
+      .accept(MediaType.APPLICATION_JSON)
+      .content(objectMapper.writeValueAsString(request)))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$.code").value(200))
+      .andExpect(jsonPath("$.data").exists())
+      .andExpect(jsonPath("$.message").exists())
+      .andExpect(jsonPath("$.data.expireAt").exists())
+      .andExpect(jsonPath("$.data.token").exists())
+      .andExpect(jsonPath("$.data.expireAt").isNumber())
+      .andExpect(jsonPath("$.data.user").value(mockUser));
+  }
+
+  @Test
+  void createTokenByPasswordFailed1() throws Exception{
+    given(authService.login(eq("mock"),eq("mock"))).willReturn(null);
+    final OauthTokenPasswordRequest request = OauthTokenPasswordRequest.builder()
+      .username("mock")
+      .password("mock")
+      .scope(RoleEnum.student)
+      .clientId("pourrfot-web")
+      .grantType(GrantTypeEnum.PASSWORD)
+      .build();
+    mockMvc.perform(post("/oauth/password-token")
+      .contentType(MediaType.APPLICATION_JSON)
+      .accept(MediaType.APPLICATION_JSON)
+      .content(objectMapper.writeValueAsString(request)))
+      .andExpect(status().isForbidden())
+      .andExpect(jsonPath("$.code").value(403))
+      .andExpect(jsonPath("$.data").exists())
+      .andExpect(jsonPath("$.message").exists());
+  }
+
+  @Test
+  void createTokenByPasswordFailed2() throws Exception{
+    final PourrfotUser mockUser = PourrfotUser.builder()
+      .username("mock")
+      .nickname("mock")
+      .id(100)
+      .role(RoleEnum.student)
+      .build();
+    given(authService.login(eq("mock"),eq("mock"))).willReturn(mockUser);
+    final OauthTokenPasswordRequest request = OauthTokenPasswordRequest.builder()
+      .username("mock")
+      .password("mock")
+      .scope(RoleEnum.admin)
+      .clientId("pourrfot-web")
+      .grantType(GrantTypeEnum.PASSWORD)
+      .build();
+    mockMvc.perform(post("/oauth/password-token")
+      .contentType(MediaType.APPLICATION_JSON)
+      .accept(MediaType.APPLICATION_JSON)
+      .content(objectMapper.writeValueAsString(request)))
+      .andExpect(status().isForbidden())
+      .andExpect(jsonPath("$.code").value(403))
       .andExpect(jsonPath("$.data").exists())
       .andExpect(jsonPath("$.message").exists());
   }

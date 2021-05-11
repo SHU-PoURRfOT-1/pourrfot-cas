@@ -1,10 +1,72 @@
 # pourrfot-cas
 
-目前pourrfot-cas和pourrfot-server的结合，仅提供半**残废**的**授权码式** Oauth2.0。
+目前pourrfot-cas和pourrfot-server的结合，仅提供半**残废**的 Oauth2.0。
 
 自动生成的 [Swagger 文档](http://47.98.133.186/cas/api/swagger-ui/)
 
-## 流程
+## 用户名-密码 流程
+
+### cURL
+
+```shell
+curl -X POST "http://localhost:9001/cas/api/oauth/password-token" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/json" \
+  -d "{
+	\"clientId\": \"pourrfot-web\",
+	\"grantType\": \"PASSWORD\",
+	\"password\": \"123456\",
+	\"scope\": \"student\",
+	\"username\": \"spencercjh\"
+}"
+```
+
+### HTTP Request
+
+```http request
+###
+POST http://localhost:9001/cas/api/oauth/password-token
+Accept: application/json
+Content-Type: application/json
+
+{
+    "clientId": "pourrfot-web",
+    "grantType": "PASSWORD",
+    "password": "123456",
+    "scope": "student",
+    "username": "spencercjh"
+}
+```
+
+### 结果
+
+```json
+{
+  "code": 200,
+  "data": {
+    "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImxvY2FsIn0.eyJpZCI6MywiY3JlYXRlVGltZSI6MTYxODc2MjgwOTAwMCwidXBkYXRlVGltZSI6MTYxODc2MjgwOTAwMCwidXNlcm5hbWUiOiJzcGVuY2VyY2poIiwibmlja25hbWUiOiLolKHkvbPmmIoiLCJwcm9maWxlUGhvdG8iOiIiLCJiaXJ0aCI6ODkwNzU1MjAwMDAwLCJzZXgiOiJtYWxlIiwicm9sZSI6InN0dWRlbnQiLCJlbWFpbCI6InNob3VzcGVuY2VyY2poQGZveG1haWwuY29tIiwidGVsZXBob25lIjoiMTUwMDAxMzE5NjUiLCJwYXNzd29yZCI6IioqKioqKiIsImV4cCI6MTYyMDg0NzIwM30.motPt2cOXAUvdQlYWBnGFQkB2o2TYdNo9X7EOpFUL5HnyP2eck_dVcyOamMmVJzLhPX9EMOaRkhDrLOw2o87bA6U1N24SHmr2KfbRPn1iJ-7EsEu_21F0T6erAFKyPWmta1WoR3eO3cMAwLZRKAG_ew2FZx4_-jkUSApZGsi9AxZ_aQxsGRR2G2tgh427tmu0Pl9zkx45bLV6UNjL3Ylc-x3fKug2aVqi7zGQNkpNXOjP4jACKTmNh3vHMKA6RDI-mAi1_XsFH3T6a2mwjTa0QCafA8hg0FlI1pmTqPdnr0KwaJ9t8Co-9Q10VIs2t7rryzTh9zxS_0ISI8e6-_5nA",
+    "expireAt": 1620847203,
+    "user": {
+      "id": 3,
+      "createTime": "2021-04-18T16:20:09.000+00:00",
+      "updateTime": "2021-04-18T16:20:09.000+00:00",
+      "username": "spencercjh",
+      "nickname": "蔡佳昊",
+      "profilePhoto": "",
+      "birth": "1998-03-24T16:00:00.000+00:00",
+      "sex": "male",
+      "role": "student",
+      "email": "shouspencercjh@foxmail.com",
+      "telephone": "15000131965",
+      "password": "******"
+    },
+    "message": "Oath2.0 password authorization success"
+  },
+  "message": "success"
+}
+```
+
+## 授权码式流程
 
 ### cURL
 ```shell
@@ -34,7 +96,7 @@ curl -X POST "http://localhost:9001/cas/api/oauth/token" \
 }"
 ```
 
-### HTTP
+### HTTP Request
 ```http request
 ###
 POST http://localhost:9001/cas/api/oauth/code

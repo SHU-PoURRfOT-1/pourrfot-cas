@@ -24,3 +24,16 @@ Content-Type: application/json
     "clientSecret": "123456",
     "grantType": "AUTHORIZATION_CODE"
 }
+
+###
+POST http://localhost:9001/cas/api/oauth/password-token
+accept: application/json
+Content-Type: application/json
+
+{
+    "clientId": "pourrfot-web",
+    "grantType": "PASSWORD",
+    "password": "123456",
+    "scope": "student",
+    "username": "spencercjh"
+}
