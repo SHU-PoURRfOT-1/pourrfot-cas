@@ -3,9 +3,9 @@ POST http://localhost:9001/cas/api/oauth/code
 Content-Type: application/json
 
 {
-    "clientId": "clientId",
+    "clientId": "pourrfot-web",
     "password": "123456",
-    "redirectUrl": "http://localhost:9000/api",
+    "redirectUrl": "http://pourrfot-server.com/api",
     "responseType": "code",
     "scope": "student",
     "state": "state",
@@ -18,9 +18,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "code": "f35baa6b24e949bd8e5610b7ae9e63c1",
+    "code": "555f7174b22a425bbd631f16a1854bf7",
     "state": "state",
-    "clientId": "clientId",
-    "clientSecret": "clientSecret",
+    "clientId": "pourrfot-web",
+    "clientSecret": "123456",
     "grantType": "AUTHORIZATION_CODE"
 }
