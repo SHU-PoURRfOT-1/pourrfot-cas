@@ -18,12 +18,3 @@ cas:
           "dq": "QQHfDFqSYh8NHqjJU-myv4Tj_P0t2huWIMh-3hDtl0sT1WUBuch6BEfGajr7rabflbqeOL65qJ8HIqbYDhZi-coYdW2WUNP34J74elr-8C6leKHX9J4UG2HcHx8nwG7xnGVBpDW8wVr6wv31J8RPATEVrH7lqiGX_ySzPhWxVfU",
           "n": "gWVuiXlACFajGPwQaJ9zIFT_NZ7zMb89Dk_H5kFwMyvh0AOnjXl4eLjBQOA_a0oVTkXrSrCiUqCQsDwpU2-aj3mQK7bQfbq6p8g174YalNHPOAOq-DZRKbL4abB15xbm7o-XVBU_H-j_98dRLkytP2Eotf17KpjQJtXMlYrDJHcIxWMEZngCF1sG2_uDL4iGyKPz1-1j2XH1BXCu5BDmTGa-lh1QoZ7MKjNOWB_f4Kvehym1wS3ao-dqYlzC3jUZqSTYudwxxF4l4yMo0sO_CCEsPixn0MBR_tJjcBvaQWMGM9grDyAU4voyNzbkpCCk4T1GYiE_HRpXqV61nUPjQw"
       }
-spring:
-  redis:
-    # Don't use local redis in most situations
-    port: 6324
-  datasource:
-    # https://www.testcontainers.org/modules/databases/jdbc/
-    url: jdbc:tc:mysql:8.0:///test
-    username: test
-    password: test
