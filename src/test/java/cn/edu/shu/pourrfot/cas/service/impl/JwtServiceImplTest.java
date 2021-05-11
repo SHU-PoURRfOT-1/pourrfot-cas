@@ -1,6 +1,6 @@
 package cn.edu.shu.pourrfot.cas.service.impl;
 
-import cn.edu.shu.pourrfot.cas.model.JwtTokenData;
+import cn.edu.shu.pourrfot.cas.model.dto.JwtTokenData;
 import cn.edu.shu.pourrfot.cas.service.JwtService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

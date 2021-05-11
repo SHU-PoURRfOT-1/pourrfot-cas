@@ -1,6 +1,6 @@
-package cn.edu.shu.pourrfot.cas.model;
+package cn.edu.shu.pourrfot.cas.model.dto;
 
-import cn.edu.shu.pourrfot.cas.enums.RoleEnum;
+import cn.edu.shu.pourrfot.cas.enums.GrantTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.net.URL;
 
 /**
  * @author spencercjh
@@ -17,19 +16,15 @@ import java.net.URL;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OauthAuthorizationCodeRequest {
-  @NotBlank
-  private String username;
-  @NotBlank
-  private String password;
+public class OauthTokenRequest {
   @NotNull
-  private URL redirectUrl;
-  @NotBlank
-  private String responseType;
+  private GrantTypeEnum grantType;
   @NotBlank
   private String clientId;
-  @NotNull
-  private RoleEnum scope;
+  @NotBlank
+  private String clientSecret;
+  @NotBlank
+  private String code;
   @NotBlank
   private String state;
 }

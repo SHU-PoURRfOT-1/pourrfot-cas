@@ -1,21 +1,21 @@
-package cn.edu.shu.pourrfot.cas.model;
+package cn.edu.shu.pourrfot.cas.model.dto;
 
+import cn.edu.shu.pourrfot.cas.model.PourrfotUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
-
 
 /**
  * @author spencercjh
  */
-@Data
-@Accessors(chain = true)
 @Builder
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class JwtTokenData {
+@NoArgsConstructor
+public class OauthTokenResponse {
   private String token;
   private long expireAt;
+  private PourrfotUser user;
+  private String message;
 }
