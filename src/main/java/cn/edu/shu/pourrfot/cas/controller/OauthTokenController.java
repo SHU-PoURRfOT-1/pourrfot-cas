@@ -22,6 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.net.URL;
+import java.util.Map;
 
 /**
  * @author spencercjh
@@ -31,12 +32,11 @@ import java.net.URL;
 @RequestMapping("/oauth")
 @Slf4j
 public class OauthTokenController {
+  private static final Map<String, String> CLIENT_SECRETS_MAP = Map.of("pourrfot-web", "123456");
   @Autowired
   private AuthService authService;
   @Autowired
   private JwtService jwtService;
-  @Autowired
-  private JwtServiceHelper jwtServiceHelper;
 
   @PostMapping(value = "/code", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   @ApiResponses({@ApiResponse(code = 403, message = "Wrong certification", response = Result.class),
@@ -86,7 +86,7 @@ public class OauthTokenController {
           .build()));
     }
     final JwtTokenData jwtTokenData = jwtService.generateToken(
-      jwtServiceHelper.parseUserToPayload(user.setPassword("******")));
+      JwtServiceHelper.parseUserToPayload(user.setPassword("******")));
     return ResponseEntity.ok(Result.normalOk("success", OauthTokenResponse.builder()
       .token(jwtTokenData.getToken())
       .expireAt(jwtTokenData.getExpireAt())
@@ -96,7 +96,6 @@ public class OauthTokenController {
   }
 
   private boolean isIllegalClient(String clientId, String clientSecret) {
-    // TODO: check client id and client secret
-    return false;
+    return !CLIENT_SECRETS_MAP.getOrDefault(clientId, "").equals(clientSecret);
   }
 }
