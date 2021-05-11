@@ -1,4 +1,4 @@
-package cn.edu.shu.pourrfot.cas.model;
+package cn.edu.shu.pourrfot.cas.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OauthTokenResponse {
-  private String token;
-  private long expireAt;
-  private PourrfotUser user;
+public class OauthAuthorizationCodeResponse {
   private String message;
+  private String redirectUrl;
 }

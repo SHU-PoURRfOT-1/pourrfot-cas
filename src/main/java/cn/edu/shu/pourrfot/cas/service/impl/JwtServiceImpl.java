@@ -1,7 +1,7 @@
 package cn.edu.shu.pourrfot.cas.service.impl;
 
 import cn.edu.shu.pourrfot.cas.exception.OauthAuthorizationException;
-import cn.edu.shu.pourrfot.cas.model.JwtTokenData;
+import cn.edu.shu.pourrfot.cas.model.dto.JwtTokenData;
 import cn.edu.shu.pourrfot.cas.service.JwtService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

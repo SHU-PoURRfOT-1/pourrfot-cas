@@ -1,5 +1,6 @@
 package cn.edu.shu.pourrfot.cas.controller;
 
+import cn.edu.shu.pourrfot.cas.model.dto.Result;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -42,18 +43,19 @@ public class JwtController {
 
 
   @GetMapping(value = "/public-key", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Map<String, Object>> getJwkPublicKey() {
-    return ResponseEntity.ok(rsaJsonWebKey.toParams(JsonWebKey.OutputControlLevel.PUBLIC_ONLY));
+  public ResponseEntity<Result<Map<String, Object>>> getJwkPublicKey() {
+    return ResponseEntity.ok(Result.normalOk("Get public-key success",
+      rsaJsonWebKey.toParams(JsonWebKey.OutputControlLevel.PUBLIC_ONLY)));
   }
 
   @GetMapping(value = "/payload", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Map<String, Object>> parse(@RequestParam String token) throws InvalidJwtException {
+  public ResponseEntity<Result<Map<String, Object>>> parse(@RequestParam String token) throws InvalidJwtException {
     final JwtConsumer consumer = new JwtConsumerBuilder()
       .setVerificationKey(rsaJsonWebKey.getPublicKey())
       .setRequireExpirationTime()
       .setAllowedClockSkewInSeconds(30)
       .build();
-    JwtContext jwt = consumer.process(token);
-    return ResponseEntity.ok(jwt.getJwtClaims().getClaimsMap());
+    final JwtContext jwt = consumer.process(token);
+    return ResponseEntity.ok(Result.normalOk("Parse JSON token success", jwt.getJwtClaims().getClaimsMap()));
   }
 }

@@ -1,8 +1,6 @@
 package cn.edu.shu.pourrfot.cas.service;
 
-import cn.edu.shu.pourrfot.cas.model.JwtTokenData;
-import cn.edu.shu.pourrfot.cas.model.PourrfotUser;
-import org.jose4j.lang.JoseException;
+import cn.edu.shu.pourrfot.cas.model.dto.JwtTokenData;
 
 import java.util.Map;
 

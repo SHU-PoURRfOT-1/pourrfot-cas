@@ -7,7 +7,7 @@ Content-Type: application/json
     "password": "123456",
     "redirectUrl": "http://localhost:9000/api",
     "responseType": "code",
-    "scope": "admin",
+    "scope": "student",
     "state": "state",
     "username": "spencercjh"
 }
@@ -18,7 +18,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "code": "17ad04d4588546709dcb9cfe8f98b10c",
+    "code": "f35baa6b24e949bd8e5610b7ae9e63c1",
     "state": "state",
     "clientId": "clientId",
     "clientSecret": "clientSecret",
