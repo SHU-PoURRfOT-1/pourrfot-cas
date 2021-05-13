@@ -2,7 +2,7 @@ cas:
   redis:
     key: mock
   jwk:
-    expire: 86400
+    expire: 864000
     keypair: |
       {
           "p": "48RxPYOgbY8fq5ehc8PQy7reqymBoydSockEun24K_MDn1Lzcg2KWnvIZO0VUiZBN4TbX1PWi3b5w03gtzewU26-r36J8pkkp9BPXrdYf0kVK9Zmymt6m-o_-UuojNVfSixwAHr78OErOEwvL981pjmXUlO6u0Nn2FNJcm-JNHU",

@@ -27,6 +27,7 @@ class JwtControllerTest {
       .andExpect(jsonPath("$.code").value(200))
       .andExpect(jsonPath("$.data").exists())
       .andExpect(jsonPath("$.message").exists())
-      .andExpect(jsonPath("$.data").isMap());
+      .andExpect(jsonPath("$.data").isMap())
+      .andDo(result -> log.info(result.getResponse().getContentAsString()));
   }
 }
