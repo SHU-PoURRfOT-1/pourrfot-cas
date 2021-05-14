@@ -10,7 +10,6 @@ import cn.edu.shu.pourrfot.cas.model.dto.OauthTokenPasswordRequest;
 import cn.edu.shu.pourrfot.cas.model.dto.OauthTokenRequest;
 import cn.edu.shu.pourrfot.cas.service.AuthService;
 import cn.edu.shu.pourrfot.cas.service.JwtService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -83,34 +82,6 @@ class OauthTokenControllerTest {
       .responseType("code")
       .clientId("test")
       .scope(RoleEnum.student)
-      .state("state")
-      .build();
-    mockMvc.perform(post("/oauth/code")
-      .contentType(MediaType.APPLICATION_JSON)
-      .accept(MediaType.APPLICATION_JSON)
-      .content(objectMapper.writeValueAsString(request)))
-      .andExpect(status().isForbidden())
-      .andExpect(jsonPath("$.code").value(403))
-      .andExpect(jsonPath("$.data").exists())
-      .andExpect(jsonPath("$.message").exists());
-  }
-
-  @Test
-  void authorizeFailed2() throws Exception {
-    final PourrfotUser mockUser = PourrfotUser.builder()
-      .username("mock")
-      .nickname("mock")
-      .id(100)
-      .role(RoleEnum.student)
-      .build();
-    given(authService.login(anyString(), anyString())).willReturn(mockUser);
-    final OauthAuthorizationCodeRequest request = OauthAuthorizationCodeRequest.builder()
-      .username("mock")
-      .password("mock")
-      .redirectUrl(new URL("http://mock-server.com/api"))
-      .responseType("code")
-      .clientId("pourrfot-web")
-      .scope(RoleEnum.admin)
       .state("state")
       .build();
     mockMvc.perform(post("/oauth/code")
@@ -233,7 +204,7 @@ class OauthTokenControllerTest {
       .id(100)
       .role(RoleEnum.student)
       .build();
-    given(authService.login(eq("mock"),eq("mock"))).willReturn(mockUser);
+    given(authService.login(eq("mock"), eq("mock"))).willReturn(mockUser);
     given(jwtService.generateToken(anyMap())).willReturn(JwtTokenData.builder()
       .token("mock")
       .expireAt(System.currentTimeMillis())
@@ -241,7 +212,6 @@ class OauthTokenControllerTest {
     final OauthTokenPasswordRequest request = OauthTokenPasswordRequest.builder()
       .username("mock")
       .password("mock")
-      .scope(RoleEnum.student)
       .clientId("pourrfot-web")
       .grantType(GrantTypeEnum.PASSWORD)
       .build();
@@ -260,38 +230,11 @@ class OauthTokenControllerTest {
   }
 
   @Test
-  void createTokenByPasswordFailed1() throws Exception{
-    given(authService.login(eq("mock"),eq("mock"))).willReturn(null);
+  void createTokenByPasswordFailed1() throws Exception {
+    given(authService.login(eq("mock"), eq("mock"))).willReturn(null);
     final OauthTokenPasswordRequest request = OauthTokenPasswordRequest.builder()
       .username("mock")
       .password("mock")
-      .scope(RoleEnum.student)
-      .clientId("pourrfot-web")
-      .grantType(GrantTypeEnum.PASSWORD)
-      .build();
-    mockMvc.perform(post("/oauth/password-token")
-      .contentType(MediaType.APPLICATION_JSON)
-      .accept(MediaType.APPLICATION_JSON)
-      .content(objectMapper.writeValueAsString(request)))
-      .andExpect(status().isForbidden())
-      .andExpect(jsonPath("$.code").value(403))
-      .andExpect(jsonPath("$.data").exists())
-      .andExpect(jsonPath("$.message").exists());
-  }
-
-  @Test
-  void createTokenByPasswordFailed2() throws Exception{
-    final PourrfotUser mockUser = PourrfotUser.builder()
-      .username("mock")
-      .nickname("mock")
-      .id(100)
-      .role(RoleEnum.student)
-      .build();
-    given(authService.login(eq("mock"),eq("mock"))).willReturn(mockUser);
-    final OauthTokenPasswordRequest request = OauthTokenPasswordRequest.builder()
-      .username("mock")
-      .password("mock")
-      .scope(RoleEnum.admin)
       .clientId("pourrfot-web")
       .grantType(GrantTypeEnum.PASSWORD)
       .build();

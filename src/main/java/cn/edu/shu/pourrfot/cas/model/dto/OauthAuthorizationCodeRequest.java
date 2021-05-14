@@ -36,7 +36,7 @@ public class OauthAuthorizationCodeRequest {
   @ApiModelProperty(example = "pourrfot-web", required = true)
   @NotBlank
   private String clientId;
-  @ApiModelProperty(required = true)
+  @ApiModelProperty(example = "pourrfot-server", required = true)
   @NotNull
   private RoleEnum scope;
   @ApiModelProperty(example = "state", required = true)

@@ -1,6 +1,5 @@
 package cn.edu.shu.pourrfot.cas.controller;
 
-import cn.edu.shu.pourrfot.cas.enums.RoleEnum;
 import cn.edu.shu.pourrfot.cas.helper.JwtServiceHelper;
 import cn.edu.shu.pourrfot.cas.model.PourrfotUser;
 import cn.edu.shu.pourrfot.cas.model.dto.*;
@@ -47,15 +46,15 @@ public class OauthTokenController {
     final String password = oauthAuthorizationCodeRequest.getPassword();
 
     final PourrfotUser user = authService.login(username, password);
-    return user == null || !user.getRole().equals(oauthAuthorizationCodeRequest.getScope()) ?
-      ResponseEntity.status(HttpStatus.FORBIDDEN)
-        .body(Result.of(HttpStatus.FORBIDDEN, "forbidden", OauthAuthorizationCodeResponse.builder()
-          .message("Wrong certification or scope")
-          .build())) :
-      ResponseEntity.ok(Result.normalOk("success", OauthAuthorizationCodeResponse.builder()
-        .message("authorize successful, redirecting...")
-        .redirectUrl(setupRedirectedUrl(user, oauthAuthorizationCodeRequest.getRedirectUrl(), oauthAuthorizationCodeRequest.getState()))
-        .build()));
+    return user == null ?
+    ResponseEntity.status(HttpStatus.FORBIDDEN)
+      .body(Result.of(HttpStatus.FORBIDDEN, "forbidden", OauthAuthorizationCodeResponse.builder()
+        .message("Wrong certification or scope")
+        .build())) :
+    ResponseEntity.ok(Result.normalOk("success", OauthAuthorizationCodeResponse.builder()
+      .message("authorize successful, redirecting...")
+      .redirectUrl(setupRedirectedUrl(user, oauthAuthorizationCodeRequest.getRedirectUrl(), oauthAuthorizationCodeRequest.getState()))
+      .build()));
   }
 
   private String setupRedirectedUrl(PourrfotUser user, URL redirectUrl, String state) {
@@ -105,9 +104,8 @@ public class OauthTokenController {
   public ResponseEntity<Result<OauthTokenResponse>> createTokenByPassword(@NotNull @Valid @RequestBody OauthTokenPasswordRequest oauthTokenPasswordRequest) {
     final String username = oauthTokenPasswordRequest.getUsername();
     final String password = oauthTokenPasswordRequest.getPassword();
-    final RoleEnum role = oauthTokenPasswordRequest.getScope();
     final PourrfotUser user = authService.login(username, password);
-    if (user == null || !user.getRole().equals(role)) {
+    if (user == null) {
       return ResponseEntity.status(HttpStatus.FORBIDDEN)
         .body(Result.of(HttpStatus.FORBIDDEN, "forbidden", OauthTokenResponse.builder()
           .message("Wrong certification or scope")

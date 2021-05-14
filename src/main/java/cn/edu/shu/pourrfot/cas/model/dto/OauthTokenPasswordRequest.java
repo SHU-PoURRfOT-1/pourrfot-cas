@@ -30,9 +30,6 @@ public class OauthTokenPasswordRequest {
   @ApiModelProperty(example = "pourrfot-web", required = true)
   @NotBlank
   private String clientId;
-  @ApiModelProperty(required = true)
-  @NotNull
-  private RoleEnum scope;
   @ApiModelProperty(example = "PASSWORD", required = true)
   @NotNull
   private GrantTypeEnum grantType;
