@@ -25,7 +25,6 @@ curl -X POST "http://localhost:9001/cas/api/oauth/password-token" \
 	\"clientId\": \"pourrfot-web\",
 	\"grantType\": \"PASSWORD\",
 	\"password\": \"123456\",
-	\"scope\": \"student\",
 	\"username\": \"spencercjh\"
 }"
 ```
@@ -42,7 +41,6 @@ Content-Type: application/json
     "clientId": "pourrfot-web",
     "grantType": "PASSWORD",
     "password": "123456",
-    "scope": "student",
     "username": "spencercjh"
 }
 ```
@@ -88,7 +86,7 @@ curl -X POST "http://localhost:9001/cas/api/oauth/code" \
 	\"password\": \"123456\",
 	\"redirectUrl\": \"http://pourrfot-server.com/api\",
 	\"responseType\": \"code\",
-	\"scope\": \"student\",
+	\"scope\": \"pourrfot-server\",
 	\"state\": \"state\",
 	\"username\": \"spencercjh\"
 }"
@@ -116,7 +114,7 @@ Content-Type: application/json
     "password": "123456",
     "redirectUrl": "http://pourrfot-server.com/api",
     "responseType": "code",
-    "scope": "student",
+    "scope": "pourrfot-server",
     "state": "state",
     "username": "spencercjh"
 }
