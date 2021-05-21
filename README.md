@@ -6,8 +6,6 @@
 
 [![Actions Status: Java CI with Gradle and CD with ssh](https://github.com/SHU-PoURRfOT-1/pourrfot-cas/workflows/Java%20CI%20with%20Gradle%20and%20CD%20with%20ssh/badge.svg)](https://github.com/SHU-PoURRfOT-1/pourrfot-cas/actions?query=workflow%3A"Java+CI+with+Gradle+and+CD+with+ssh")
 
-![License](https://img.shields.io/github/license/SHU-PoURRfOT-1/pourrfot-web)
-
 
 目前pourrfot-cas和pourrfot-server的结合，仅提供半**残废**的 Oauth2.0。
 
